@@ -33,14 +33,14 @@ function App() {
     <main>
       <Nav user={user} />
       <Switch>
-        <Route>
-          <ProductPage products={products} />
-        </Route>
         <Route exact path="/signin">
-          <Signin onSign={onSign} />
+          <Signin  />
         </Route>
         <Route exact path="/signup">
-          <Signup onSign={onSign} />
+          <Signup  />
+        </Route>
+        <Route exact path="/products">
+          <ProductPage products={products} />
         </Route>
       </Switch>
     </main>

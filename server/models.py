@@ -5,8 +5,6 @@ from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 
 
-
-
 class User(db.Model, SerializerMixin):
     __tablename__ = "users"
     
