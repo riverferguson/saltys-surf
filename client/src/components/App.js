@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Nav from "./Nav";
 import ProductPage from "./ProductPage";
-import Signin from "./Signin";
-import Signup from "./Signup";
+import Footer from "./Footer";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import SignOut from "./SignOut";
+import Cart from "./Cart";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -34,15 +37,22 @@ function App() {
       <Nav user={user} />
       <Switch>
         <Route exact path="/signin">
-          <Signin  />
+          <SignIn  onSign={onSign}/>
+        </Route>
+        <Route path="/signout">
+          <SignOut onSign={onSign} />
         </Route>
         <Route exact path="/signup">
-          <Signup  />
+          <SignUp  onSign={onSign}/>
         </Route>
         <Route exact path="/products">
           <ProductPage products={products} />
         </Route>
+        <Route>
+          <Cart />
+        </Route>
       </Switch>
+      <Footer />
     </main>
   );
 }

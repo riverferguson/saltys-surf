@@ -16,18 +16,6 @@ import { useHistory } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
-function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="https://mui.com/">
-          Your Website
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
 
 function SignUp({ onSign }){
     const [email, setEmail] = useState("")
@@ -110,7 +98,7 @@ function SignUp({ onSign }){
                     label="Password"
                     id="password"
                     autoComplete="new-password"
-                    input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password'
+                    input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password'
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -133,7 +121,6 @@ function SignUp({ onSign }){
               </Grid>
             </Box>
           </Box>
-          <Copyright sx={{ mt: 5 }} />
         </Container>
       </ThemeProvider>
     )

@@ -13,7 +13,10 @@ const Nav = ({ user }) => {
                   <li className='nav-link-wrapper'>
                   <Link to="/products"> Products </Link>
                   </li>
-    
+                  
+                  <li className='nav-link-wrapper'>
+                  <Link to="/cartitems"> Cart </Link>
+                  </li>
 
                   <li className='nav-link-wrapper'>
                   <Link to='/products/new'>Sell</Link>
