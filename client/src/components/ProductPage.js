@@ -34,7 +34,7 @@ const mappedProducts = products.map(product => <ProductCard key={product.id} pro
           </Menu>
           { user && <>  
             {user?.customer ? (null) :
-            (<Button as={Link} to='/newitem'>Add Item</Button>
+            (<Button as={Link} to='/product/new'>Add Item</Button>
             )}</>}
         </Grid.Column>
 

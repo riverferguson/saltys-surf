@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     const filtered = products.filter(product => {
-      if (category === 'all') {
+      if (category === 'surfboard') {
         return true;
       } else {
         return product.category === category;
