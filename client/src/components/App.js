@@ -7,6 +7,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import SignOut from "./SignOut";
 import Cart from "./Cart";
+import ProductForm from "./ProductForm";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -79,6 +80,9 @@ function App() {
         </Route>
         <Route>
           <Cart exact path='/cart'/>
+        </Route>
+        <Route>
+          <ProductForm path="/products/new"/>
         </Route>
       </Switch>
       <Footer />

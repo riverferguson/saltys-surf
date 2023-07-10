@@ -53,23 +53,20 @@ const addToCart = (e) => {
            {name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        {description}
+        Description: {description}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        {condition}
+        Condition: {condition}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        {category}
+         Category: {category}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        {price}
+        Price: ${price}
         </Typography>
       </CardContent>
       <CardActions>
       <Button size="small">
-      <Link to={`/products/${id}`} >
-        All Details
-      </Link>
       </Button>
       <Button sixe="small" onClick={addToCart}> Add To Cart </Button>
       </CardActions>

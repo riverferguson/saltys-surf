@@ -39,7 +39,7 @@ const mappedProducts = products.map(product => <ProductCard key={product.id} pro
         </Grid.Column>
 
         <Grid.Column stretched width={12}>
-          <Grid Columns={2} stackable>
+          <Grid columns={2} stackable>
             { filteredItems.map(item => (
               <Grid.Column key={item.id} computer={8} tablet={16} mobile={16}>
               </Grid.Column>

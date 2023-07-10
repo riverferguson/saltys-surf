@@ -56,6 +56,25 @@ class Product(db.Model, SerializerMixin):
     
     #serlize_only = (id, name, image, category, condition, description, price, user_id, created_at, updated_at)
     
+    @validates('name')
+    def validate_name(self, key, name):
+        if not 1 <= len(name) <= 30:
+            raise ValueError('Name must be between 1 and 30 characters')
+        return name
+    
+    @validates('category')
+    def validate_category(self, key, category):
+        if not category:
+            raise ValueError('Category cannot be empty')
+        return category
+    
+    @validates('conditon')
+    def validate_condition(self, key, condition):
+        if not condition:
+            raise ValueError('Category cannot be empty')
+        return condition
+    
+    
     
     def __repr__(self):
         return f'<Product {self.id}'

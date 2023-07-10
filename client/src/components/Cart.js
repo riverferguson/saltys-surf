@@ -81,20 +81,20 @@ const Cart = () => {
       <Grid.Column width={6}>
 
     <Card.Group centered>
-      {orderItems.map(item => (
-        <div key={item.id}>
+      {orderItems.map(product => (
+        <div key={product.id}>
           <Card fluid color='orange'>
-            <Image src={item.menuitem.img_url} 
+            <Image src={product.product.image} 
             style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
             />
-            <Card.Content header={item.menuitem.name} meta={item.menuitem.price} />
+            <Card.Content header={product.product.name} meta={product.product.price} />
             <Card.Content>
               <Button.Group>
-                <Button onClick={() => handleMinus(item)}><Icon name='minus' /></Button>
-                <Button.Or text={item.quantity} />
-                <Button onClick={() => handleAdd(item)}><Icon name='plus' /></Button>
+                <Button onClick={() => handleMinus(product)}><Icon name='minus' /></Button>
+                <Button.Or text={product.quantity} />
+                <Button onClick={() => handleAdd(product)}><Icon name='plus' /></Button>
               </Button.Group>
-              <Button floated='right' onClick={() => setDeleteItem(item)}><Icon name='trash' /></Button>
+              <Button floated='right' onClick={() => setDeleteItem(product)}><Icon name='trash' /></Button>
             </Card.Content>
           </Card>
           <br/>
