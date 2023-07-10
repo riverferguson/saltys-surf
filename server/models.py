@@ -18,6 +18,7 @@ class User(db.Model, SerializerMixin):
     reviews = db.relationship('Review', backref='user')
     cart_items = association_proxy('reviews', 'cart_items')
     
+    
     def __repr__(self):
         return f'<User {self.id}: {self.username}'
     
@@ -28,6 +29,7 @@ class Cartitem(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     quantity = db.Column(db.Integer, nullable=False)
     product_id =  db.Column(db.Integer, db.ForeignKey('products.id'))
+    user_id =  db.Column(db.Integer, db.ForeignKey('users.id'))
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
     

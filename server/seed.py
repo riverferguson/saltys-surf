@@ -27,11 +27,11 @@ if __name__ == '__main__':
 
 
 
-        cart1 = Cartitem(quantity=1, product_id=1)
-        cart2 = Cartitem(quantity=1, product_id=2)
-        cart3 = Cartitem(quantity=1, product_id=3)
-        cart4 = Cartitem(quantity=1, product_id=4)
-        cart5 = Cartitem(quantity=1, product_id=5)
+        cart1 = Cartitem(quantity=1, product_id=1, user_id=1)
+        cart2 = Cartitem(quantity=1, product_id=2, user_id=1)
+        cart3 = Cartitem(quantity=1, product_id=3, user_id=1)
+        cart4 = Cartitem(quantity=1, product_id=4, user_id=1)
+        cart5 = Cartitem(quantity=1, product_id=5, user_id=3)
 
         items = [cart1, cart2, cart3, cart4, cart5]
         db.session.add_all(items)
