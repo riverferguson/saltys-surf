@@ -11,6 +11,34 @@ import Container from '@mui/material/Container';
 const ProductCard = ({product}) => {
 const {id, name, image, category, condition, description, price} = product
 
+const addToCart = (e) => {
+
+  e.target.innerText = "Item added";
+
+
+    fetch('/cartitems', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          product_id: product.id,
+          quantity: 1
+        })
+    })
+    .then(res => {
+      if (res.ok) {
+        res.json().then(data => {
+          console.log(data)
+          console.log(`Item successfully added to cart.`)
+      })
+    }
+    })  
+    setTimeout(() => {
+      e.target.innerText = "Add to Cart";
+  }, 2000);
+}
+
   return (
     <Container maxWidth="sm">
     <Card sx={{ maxWidth: 345, margin: '80px'}}>
@@ -43,6 +71,7 @@ const {id, name, image, category, condition, description, price} = product
         All Details
       </Link>
       </Button>
+      <Button sixe="small" onClick={addToCart}> Add To Cart </Button>
       </CardActions>
     </Card>
     </Container>

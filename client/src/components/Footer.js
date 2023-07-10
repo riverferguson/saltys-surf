@@ -9,7 +9,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 const Footer = () => {
   return (
         <>
-          <div className='icon-bar' style={{ backgroundColor: 'blue', color: 'white', padding: '25px' }}>
+          <div className='icon-bar' style={{ backgroundColor: 'gray', color: 'white', padding: '25px' }}>
             <a href='https://twitter.com' target="_blank" rel='noreferrer'>
             <TwitterIcon className='socials-icon' sx={{mr: 2, fontSize: 40, color: '#2196f3'}} />
             </a>
@@ -22,7 +22,7 @@ const Footer = () => {
             <a href='https://gmail.com/' target="_blank" rel='noreferrer'>
             <MailOutlineIcon className='socials-icon' sx={{mr: 2, fontSize: 40, color: '#2196f3'}} />
             </a>
-            <p>Pacific Boat Club &#8482;</p> 
+            <p>Salty's Surfshop &#8482;</p> 
             <a href='#root'>
             </a>
           </div>

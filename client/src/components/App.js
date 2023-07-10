@@ -12,14 +12,28 @@ function App() {
   const [products, setProducts] = useState([]);
   const [user, setUser] = useState(null);
   const onSign = (user) => setUser(user);
+  const [ category, setCategory ] = useState('all')
+  const [ filteredItems, setFilteredItems ] = useState([])
 
   useEffect(() => {
     fetch("/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-      });
-  }, []);
+    .then(res => res.json())
+    .then(data => {
+      setProducts(data)
+      setFilteredItems(data)
+    });
+  }, [])
+
+  useEffect(() => {
+    const filtered = products.filter(product => {
+      if (category === 'all') {
+        return true;
+      } else {
+        return product.category === category;
+      }
+    });
+    setFilteredItems(filtered);
+  }, [products, category]);
 
   useEffect(() => {
     fetch("/check_session").then((r) => {
@@ -31,6 +45,21 @@ function App() {
       }
     });
   }, []);
+
+  const deleteItem = (id) => {
+    console.log(id)
+    const updatedItems = products.filter(product => product.id !== id)
+    setProducts(updatedItems)
+  }
+
+  const onAddItem = (newProduct) => {
+    const updatedItems = [...products, newProduct]
+    setProducts(updatedItems)
+  }
+
+  const handleFilter = (value) => {
+    setCategory(value)
+  }
 
   return (
     <main>
@@ -46,10 +75,10 @@ function App() {
           <SignUp  onSign={onSign}/>
         </Route>
         <Route exact path="/products">
-          <ProductPage products={products} />
+          <ProductPage products={products} filteredItems={filteredItems} handleFilter={handleFilter} user={user}/>
         </Route>
         <Route>
-          <Cart />
+          <Cart exact path='/cart'/>
         </Route>
       </Switch>
       <Footer />

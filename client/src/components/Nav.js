@@ -24,7 +24,7 @@ const Nav = ({ user }) => {
 
                   <li className='nav-link-wrapper'>
                   <Link to={user ? "/signout" : "/signin"}>
-                    {user ? "SignOut" : "SignIn"}
+                  {user? `Welcome, ${user.username}`:"SignIn"}
                     </Link>
                   </li>
 
