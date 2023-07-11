@@ -93,6 +93,7 @@ class Review(db.Model, SerializerMixin):
     cart_items = db.relationship('Cartitem', backref='review')
     products = association_proxy('cart_items', 'product')
     
+    serialize_only = ('id', 'user_id', 'body', 'cart_item_id', 'created_at', 'updated_at')
     
     def __repr__(self):
         return f'<Review {self.id}'

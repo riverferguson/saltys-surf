@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import { Card, Button, Icon, Container, Modal, Grid, Image, Segment, Header } from 'semantic-ui-react';
 
-const Cart = () => {
+const Cart = (product) => {
   const [orderItems, setOrderItems] = useState([]);
   const [deleteItem, setDeleteItem] = useState(null);
   const [total, setTotal] = useState(0);
@@ -12,7 +12,7 @@ const Cart = () => {
       .then(response => response.json())
       .then(data => {
         setOrderItems(data);
-        setTotal(data.reduce((acc, product) => acc + product.cartitem.price * product.quantity, 0));
+        setTotal(data.reduce((acc, product) => acc + product.price * product.quantity, 0));
       })
       .catch(error => console.log(error));
   }, []);
@@ -71,7 +71,7 @@ const Cart = () => {
   const updateQuantity = (quantityChange) => {
     const updatedItem = orderItems.map((product) => product.id === quantityChange.id ? quantityChange : product);
     setOrderItems(updatedItem);
-    setTotal(updatedItem.reduce((acc, product) => acc + product.menuitem.price * product.quantity, 0));
+    setTotal(updatedItem.reduce((acc, product) => acc + product.price * product.quantity, 0));
   };
 
   return (
@@ -84,10 +84,10 @@ const Cart = () => {
       {orderItems.map(product => (
         <div key={product.id}>
           <Card fluid color='orange'>
-            <Image src={product.product.image} 
+            <Image src={product.image} 
             style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
             />
-            <Card.Content header={product.product.name} meta={product.product.price} />
+            <Card.Content header={product.name} meta={product.price} />
             <Card.Content>
               <Button.Group>
                 <Button onClick={() => handleMinus(product)}><Icon name='minus' /></Button>
@@ -122,7 +122,7 @@ const Cart = () => {
     >
       <Modal.Header>Are you sure you want to delete this item?</Modal.Header>
       <Modal.Content>
-        <p>{deleteItem && deleteItem.menuitem.name}</p>
+        <p>{deleteItem && deleteItem.name}</p>
       </Modal.Content>
       <Modal.Actions>
         <Button negative onClick={() => handleDelete(deleteItem)}>Delete</Button>

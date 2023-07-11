@@ -79,7 +79,7 @@ function App() {
           <ProductPage products={products} filteredItems={filteredItems} handleFilter={handleFilter} user={user} deleteItem={deleteItem}/>
         </Route>
         <Route>
-          <Cart exact path='/cart'/>
+          <Cart exact path='/cart' product={products}/>
         </Route>
         <Route>
           <ProductForm path="/products/new"/>

@@ -47,10 +47,7 @@ const submitReview = () => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      product_id: product.id,
-      review: review,
-    }),
+    body: JSON.stringify({ review: review }),
   })
     .then((res) => {
       if (res.ok) {
@@ -64,7 +61,6 @@ const submitReview = () => {
       console.error('Error adding review:', error);
     });
 };
-
 const handleReviewChange = (event) => {
   setReview(event.target.value);
 };
