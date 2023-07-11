@@ -32,10 +32,6 @@ const mappedProducts = products.map(product => <ProductCard key={product.id} pro
               onClick={(e) => handleFilter(e.target.getAttribute('value'))}
             />
           </Menu>
-          { user && <>  
-            {user?.customer ? (null) :
-            (<Button as={Link} to='/product/new'>Add Item</Button>
-            )}</>}
         </Grid.Column>
 
         <Grid.Column stretched width={12}>

@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom'
-import * as React from 'react';
+
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -9,7 +10,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 const ProductCard = ({product}) => {
-const {id, name, image, category, condition, description, price} = product
+const { name, image, category, condition, description, price} = product
+const [review, setReview] = useState('');
 
 const addToCart = (e) => {
 
@@ -38,6 +40,34 @@ const addToCart = (e) => {
       e.target.innerText = "Add to Cart";
   }, 2000);
 }
+
+const submitReview = () => {
+  fetch('/reviews', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      product_id: product.id,
+      review: review,
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        res.json().then((data) => {
+          console.log(data);
+          console.log('Review successfully added.');
+        });
+      }
+    })
+    .catch((error) => {
+      console.error('Error adding review:', error);
+    });
+};
+
+const handleReviewChange = (event) => {
+  setReview(event.target.value);
+};
 
   return (
     <Container maxWidth="sm">
@@ -70,6 +100,16 @@ const addToCart = (e) => {
       </Button>
       <Button sixe="small" onClick={addToCart}> Add To Cart </Button>
       </CardActions>
+      <CardActions>
+  <textarea
+    value={review}
+    onChange={handleReviewChange}
+    placeholder="Write a review..."
+    rows={4}
+    cols={50}
+  />
+  <Button onClick={submitReview}>Submit Review</Button>
+</CardActions>
     </Card>
     </Container>
   );

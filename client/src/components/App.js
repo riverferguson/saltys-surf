@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     const filtered = products.filter(product => {
-      if (category === 'surfboard') {
+      if (category === 'all') {
         return true;
       } else {
         return product.category === category;
@@ -76,7 +76,7 @@ function App() {
           <SignUp  onSign={onSign}/>
         </Route>
         <Route exact path="/products">
-          <ProductPage products={products} filteredItems={filteredItems} handleFilter={handleFilter} user={user}/>
+          <ProductPage products={products} filteredItems={filteredItems} handleFilter={handleFilter} user={user} deleteItem={deleteItem}/>
         </Route>
         <Route>
           <Cart exact path='/cart'/>
