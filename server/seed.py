@@ -40,11 +40,11 @@ if __name__ == '__main__':
 
 
 
-        p1 = Product(name='Shortboard', image='https://www.usedsurfboardshawaii.com/wp-content/uploads/2023/06/IMG_2705.jpg', category='surfboard', condition='used', description='surfboard', price=500.00)
-        p2 = Product(name='longboad', image='https://www.usedsurfboardshawaii.com/wp-content/uploads/2023/07/IMG_2760.jpg', category='surfboard', condition='used', description='surfboard', price=500.00)
-        p3 = Product(name='fcs fins', image='https://www.surffcs.com/cdn/shop/products/FCSII_PERFORMER_ECONEO_TRI_900x.jpg?v=1678403074', category='fins', condition='used', description='fins', price=500.00)
-        p4 = Product(name='leash', image='https://www.surffcs.com/cdn/shop/products/FCS_HELIX_BLUE_COMP_HERO_900x.jpg?v=1628138549', category='leash', condition='used', description='leash', price=500.00)
-        p5 = Product(name='midlength', image='https://www.usedsurfboardshawaii.com/wp-content/uploads/2023/06/IMG_2697.jpg', category='surfboard', condition='used', description='surfboard', price=500.00)
+        p1 = Product(name='G Skate', image='https://cisurfboards.com/cdn/shop/products/GSkate_Blue_Deck.png?v=1678850127', category='The G Skate has a lot of get up and go speed thanks to its light single to double concave, low entry rocker, wide point forward—and its contemporary shortboard rails provide all the precision and control you could ever want', condition='new', description='surfboard', price=750.00)
+        p2 = Product(name='Chancho', image='https://cisurfboards.com/cdn/shop/products/chancho-deck-shape-3d-mock-up-white.png?v=1619468905', category='surfboard', condition='used', description='Whether new to surfing or just looking to enjoy a cruisy session, the all-new Chancho is a super user-friendly, stable board that catches waves with ease. The Chancho boasts generous volume for its mid length size, and features low nose rocker for early wave entry. Its subtle vee-bottom contours that run through the fins help it turn effortlessly.', price=500.00)
+        p3 = Product(name='FCS Fins', image='https://www.surffcs.com/cdn/shop/products/FCSII_PERFORMER_ECONEO_TRI_900x.jpg?v=1678403074', category='fins', condition='new', description='These fins feature a sleek and aerodynamic design, minimizing drag and maximizing efficiency. With their innovative technology and superior materials, they offer enhanced grip and traction, empowering you to execute sharp turns and maintain control even in challenging conditions', price=75.00)
+        p4 = Product(name='FCS Leash', image='https://www.surffcs.com/cdn/shop/products/FCS_HELIX_BLUE_COMP_HERO_900x.jpg?v=1628138549', category='leash', condition='used', description='leash', price=25.00)
+        p5 = Product(name='Twin Fin', image='https://cisurfboards.com/cdn/shop/products/twinfin_deck1.png?v=1619470339', category='surfboard', condition='used', description='An amazing and fun twin fin CI board waiting for an owner ready to tackle some fine waves.', price=700.00)
 
         products = [p1, p2, p3, p4, p5]
         db.session.add_all(products)
