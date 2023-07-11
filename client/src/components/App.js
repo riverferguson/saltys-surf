@@ -21,11 +21,14 @@ function App() {
     .then(res => res.json())
     .then(data => {
       setProducts(data)
+      console.log('here')
+      console.log(products)
       setFilteredItems(data)
     });
   }, [])
 
   useEffect(() => {
+    console.log('being called here')
     const filtered = products.filter(product => {
       if (category === 'all') {
         return true;
@@ -34,6 +37,7 @@ function App() {
       }
     });
     setFilteredItems(filtered);
+    console.log(filteredItems)
   }, [products, category]);
 
   useEffect(() => {
@@ -60,10 +64,11 @@ function App() {
 
   const handleFilter = (value) => {
     setCategory(value)
+    console.log(value)
   }
 
   return (
-    <main>
+    <main className="app">
       <Nav user={user} />
       <Switch>
         <Route exact path="/signin">

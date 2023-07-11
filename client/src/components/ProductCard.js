@@ -71,7 +71,7 @@ const handleReviewChange = (event) => {
       <CardMedia
         component="img"
         alt={name}
-        height="140"
+        height="240"
         src={image}
       />
       <CardContent>

@@ -7,7 +7,7 @@ from flask import request, make_response, session, abort, url_for, redirect, jso
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_restful import Resource
 from functools import wraps
-#import ipdb
+import ipdb
 
 # Local imports
 from config import *
@@ -133,8 +133,23 @@ api.add_resource(ProductsByID, '/products/<int:id>')
 
 class Cartitems(Resource):
     def get(self):
-        cart_item = [c.to_dict() for c in Cartitem.query.all()]
-        return make_response(jsonify(cart_item), 200)
+        #cart_item = [c.to_dict() for c in db.session.query(Cartitem, Product).select_from(Cartitem).join(Product, Product.id == Cartitem.product_id).all()]
+        result = []
+        query_result = db.session.query(Cartitem, Product).select_from(Cartitem).join(Product, Product.id == Cartitem.product_id).all()
+        for query in query_result:
+            (cartitem, product) = query
+            joined_product = {
+                "id": cartitem.id,
+                "product_id": product.id,
+                "quantity": cartitem.quantity,
+                "name": product.name,
+                "image": product.image,
+                "description": product.description,
+                "price": product.price
+            }
+            result.append(joined_product)
+            
+        return make_response(jsonify(result), 200)
         
     def post(self):
         try:

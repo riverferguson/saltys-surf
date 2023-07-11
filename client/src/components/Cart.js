@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import { Card, Button, Icon, Container, Modal, Grid, Image, Segment, Header } from 'semantic-ui-react';
 
-const Cart = (product) => {
+const Cart = ({product}) => {
   const [orderItems, setOrderItems] = useState([]);
   const [deleteItem, setDeleteItem] = useState(null);
   const [total, setTotal] = useState(0);
@@ -59,7 +59,7 @@ const Cart = (product) => {
       if (res.ok) {
         setOrderItems(orderItems.filter(orderItem => orderItem.id !== deleteItem.id));
         setDeleteItem(null);
-        setTotal(orderItems.filter(orderItem => orderItem.id !== deleteItem.id).reduce((acc, product) => acc + product.menuitem.price * product.quantity, 0));
+        setTotal(orderItems.filter(orderItem => orderItem.id !== deleteItem.id).reduce((acc, product) => acc + product.price * product.quantity, 0));
 
       } else {
         throw new Error('Unexpected response');
@@ -75,7 +75,9 @@ const Cart = (product) => {
   };
 
   return (
-    <Container>
+    <Container className='cart'>
+      {console.log('here3')}
+      {console.log(orderItems)}
     <h2>Cart</h2>
     <Grid centered>
       <Grid.Column width={6}>
