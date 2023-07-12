@@ -197,11 +197,10 @@ class Reviews(Resource):
     
         
     def post(self):
-        ipdb.set_trace()
+        #ipdb.set_trace()
         try:
             #query_result = db.session.query(Cartitem, Product).select_from(Cartitem).join(Product, Product.id == Cartitem.product_id).all()
             data = request.get_json()
-            print(**data.body)
             review = Review(**data)
             db.session.add(review)
             

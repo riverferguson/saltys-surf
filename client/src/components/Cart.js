@@ -114,7 +114,7 @@ const Cart = ({product}) => {
     <Grid.Column width={4}>
     <Segment>
       <Header>Total</Header>
-      <h2>{total}.00</h2>
+      <h2>${total}.00</h2>
     </Segment>
     </Grid.Column>
 

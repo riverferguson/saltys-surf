@@ -5,7 +5,6 @@ import { Grid, Menu, Button } from 'semantic-ui-react'
 import { createMuiTheme } from '@mui/material';
 
 const ProductPage = ({products, handleFilter, orderItems, user}) => {
-const mappedProducts = products.map(product => <ProductCard key={product.id} product={product} orderItems={orderItems}/>)
 const [filterItems, setFilterItems] = useState(products)
 
 
@@ -64,7 +63,6 @@ const filteredProducts = (value) => {
               </Grid.Column>
             )) }
           </Grid>
-          {/* {mappedProducts} */}
         </Grid.Column>
       </Grid>
     </div>
