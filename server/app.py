@@ -133,7 +133,6 @@ api.add_resource(ProductsByID, '/products/<int:id>')
 
 class Cartitems(Resource):
     def get(self):
-        #cart_item = [c.to_dict() for c in db.session.query(Cartitem, Product).select_from(Cartitem).join(Product, Product.id == Cartitem.product_id).all()]
         result = []
         query_result = db.session.query(Cartitem, Product).select_from(Cartitem).join(Product, Product.id == Cartitem.product_id).all()
         for query in query_result:
@@ -200,7 +199,7 @@ class Reviews(Resource):
     def post(self):
         ipdb.set_trace()
         try:
-            query_result = db.session.query(Cartitem, Product).select_from(Cartitem).join(Product, Product.id == Cartitem.product_id).all()
+            #query_result = db.session.query(Cartitem, Product).select_from(Cartitem).join(Product, Product.id == Cartitem.product_id).all()
             data = request.get_json()
             print(**data.body)
             review = Review(**data)

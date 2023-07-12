@@ -37,7 +37,7 @@ function SignIn({ onSign }){
         .then((r) => {
             if(r.ok){
                 r.json().then(data => onSign([...data]))
-                history.push('/products')
+                history.push('/home')
             } else {
                 alert('Invalid Credentials')
             }

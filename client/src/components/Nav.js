@@ -5,11 +5,6 @@ const Nav = ({ user }) => {
   return (
     <nav className="nav">
       <Link to="/home" className="site-title">
-        <img
-          className="logo"
-          src={process.env.PUBLIC_URL + ""}
-          alt="oops"
-        />
         <span className="shop-name">&nbsp; Salty's Surfshop</span>
       </Link>
       <ul>

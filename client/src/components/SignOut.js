@@ -1,4 +1,5 @@
 import { useHistory } from 'react-router-dom'
+import Button from '@mui/material/Button';
 
 function SignOut({ onSign }){
 
@@ -11,7 +12,7 @@ function SignOut({ onSign }){
             if(r.ok){
                 onSign(null)
                 alert('Sign out successful, returning to home....')
-                history.push('/boats')
+                history.push('/home')
             } else {
                 alert('Something went wrong. Please try again')
             }
@@ -19,10 +20,12 @@ function SignOut({ onSign }){
     }
 
     return (
-        <li >
+        < >
             <h2>Would you like to Sign Out?</h2>
-            <button onClick={handleSignOut}>Sign Out</button>
-        </li>
+            <Button onClick={handleSignOut} variant="contained" disableElevation>
+      Signout
+    </Button>
+        </>
     )
 }
 
