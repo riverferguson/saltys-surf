@@ -8,6 +8,7 @@ import SignUp from "./SignUp";
 import SignOut from "./SignOut";
 import Cart from "./Cart";
 import ProductForm from "./ProductForm";
+import About from "./About";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -88,6 +89,9 @@ function App() {
         </Route>
         <Route>
           <ProductForm path="/products/new"/>
+        </Route>
+        <Route>
+          <About />
         </Route>
       </Switch>
       <Footer />

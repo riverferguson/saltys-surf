@@ -88,7 +88,7 @@ const handleReviewChange = (event) => {
          Category: {category}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        Price: ${price}
+        Price: ${price}.00
         </Typography>
       </CardContent>
       <CardActions>
