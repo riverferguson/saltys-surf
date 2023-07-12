@@ -12,12 +12,12 @@ const [filterItems, setFilterItems] = useState(products)
 
 
 const filteredProducts = (value) => {
-  const updatedProducts = products.map(product => product["cartitem_id"] = orderItems.filter(item => item.product_id === product.id)[0].id)
-    if (value === 'all') {
-    setFilterItems(updatedProducts)
+  console.log('here', value, products)
+  if (value === 'all') {
+    setFilterItems(products)
     return
   }
-  let items = updatedProducts.filter(product => {
+  let items = products.filter(product => {
     return product.category === value
   })
   console.log(items)

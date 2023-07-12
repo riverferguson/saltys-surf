@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, make_response, session, abort, url_for, redirect, jsonify
+from flask import request, make_response, session, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_restful import Resource
 from functools import wraps
@@ -198,12 +198,14 @@ class Reviews(Resource):
     
         
     def post(self):
- 
+        ipdb.set_trace()
         try:
+            query_result = db.session.query(Cartitem, Product).select_from(Cartitem).join(Product, Product.id == Cartitem.product_id).all()
             data = request.get_json()
             print(**data.body)
             review = Review(**data)
             db.session.add(review)
+            
             db.session.commit()
             return make_response(review.to_dict(), 201)
         except Exception as e:

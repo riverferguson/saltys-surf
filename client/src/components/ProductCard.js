@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -11,7 +10,25 @@ import Container from '@mui/material/Container';
 
 const ProductCard = ({product, user}) => {
 const { name, image, category, condition, description, price} = product
-const [review, setReview] = useState('');
+const [reviewText, setReviewText] = useState("")
+const [reviewList, setReviewList] = useState([]);
+
+const Review = ({reviewBody}) => {
+  return (
+    <>
+      <h1>New Review</h1>
+      <p>{reviewBody}</p>
+    </>
+  )
+}
+
+const ReviewList = () => {
+  reviewList.map((reviewBody) => {
+    return <Review reviewBody={reviewBody.body} />
+  })
+}
+
+console.log(reviewList.length)
 
 const addToCart = (e) => {
 
@@ -41,18 +58,33 @@ const addToCart = (e) => {
   }, 2000);
 }
 
-const submitReview = () => {
+const submitReview = (e) => {
+  
+  e.preventDefault();
+
+  if (reviewText.trim() === '') {
+    return;
+  }
+
+  console.log(`user_id: ${user.id}`)
+  console.log(`cart_item_id: ${Object.keys(product)}`)
+
   fetch('/reviews', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ user_id: user.id, body: review, cart_item_id: product.cartitem_id }),
+    body: JSON.stringify({ 
+      user_id: user.id, 
+      body: reviewText, 
+      cart_item_id: product.cartitem_id 
+    }),
   })
     .then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          console.log(data);
+          setReviewList(prevList => [...prevList, data])
+          setReviewText("")
           console.log('Review successfully added.');
         });
       }
@@ -62,7 +94,7 @@ const submitReview = () => {
     });
 };
 const handleReviewChange = (event) => {
-  setReview(event.target.value);
+  setReviewText(event.target.value);
 };
 
   return (
@@ -97,15 +129,21 @@ const handleReviewChange = (event) => {
       <Button sixe="small" onClick={addToCart}> Add To Cart </Button>
       </CardActions>
       <CardActions>
-  <textarea
-    value={review}
-    onChange={handleReviewChange}
-    placeholder="Write a review..."
-    rows={4}
-    cols={50}
-  />
-  <Button onClick={submitReview}>Submit Review</Button>
+  <form onSubmit={submitReview}>
+    <textarea
+      value={reviewText}
+      onChange={handleReviewChange}
+      placeholder="Write a review..."
+      rows={4}
+      cols={50}
+    />
+  <Button type="submit">Submit Review</Button>
+  </form>
+  
 </CardActions>
+  { reviewList.map((review) => (
+    <Review reviewBody={review.body} />
+  ))}
     </Card>
     </Container>
   );

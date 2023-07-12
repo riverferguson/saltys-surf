@@ -17,7 +17,7 @@ function App() {
   const onSign = (user) => setUser(user);
   const [ category, setCategory ] = useState('all')
   const [ filteredItems, setFilteredItems ] = useState([])
-  const [orderItems, setOrderItems] = useState([]);
+
 
   useEffect(() => {
     fetch("/products")
@@ -84,10 +84,10 @@ function App() {
           <SignUp  onSign={onSign}/>
         </Route>
         <Route exact path="/products">
-          <ProductPage products={products} filteredItems={filteredItems} handleFilter={handleFilter} user={user} deleteItem={deleteItem} orderItems={orderItems}/>
+          <ProductPage products={products} filteredItems={filteredItems} handleFilter={handleFilter} user={user} deleteItem={deleteItem}/>
         </Route>
-        <Route exact path='/cart'>
-          <Cart  product={products} orderItems={orderItems} setOrderItems={setFilteredItems}/>
+        <Route exact path='/cartitems'>
+          <Cart  product={products}  setOrderItems={setFilteredItems}/>
         </Route>
         <Route path="/products/new">
           <ProductForm />

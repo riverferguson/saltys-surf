@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import { Card, Button, Icon, Container, Modal, Grid, Image, Segment, Header } from 'semantic-ui-react';
 
-const Cart = ({orderItems, setOrderItems}) => {
+const Cart = ({product}) => {
 
   const [deleteItem, setDeleteItem] = useState(null);
   const [total, setTotal] = useState(0);
+  const [orderItems, setOrderItems] = useState([]);
 
   useEffect(() => {
     fetch('/cartitems')
