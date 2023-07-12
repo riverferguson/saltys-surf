@@ -9,7 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-const ProductCard = ({product}) => {
+const ProductCard = ({product, user}) => {
 const { name, image, category, condition, description, price} = product
 const [review, setReview] = useState('');
 
@@ -47,7 +47,7 @@ const submitReview = () => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ review: review }),
+    body: JSON.stringify({ user_id: user.id, body: review, cart_item_id: product.cartitem_id }),
   })
     .then((res) => {
       if (res.ok) {

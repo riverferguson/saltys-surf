@@ -198,8 +198,10 @@ class Reviews(Resource):
     
         
     def post(self):
+ 
         try:
             data = request.get_json()
+            print(**data.body)
             review = Review(**data)
             db.session.add(review)
             db.session.commit()

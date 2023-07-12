@@ -9,6 +9,7 @@ import SignOut from "./SignOut";
 import Cart from "./Cart";
 import ProductForm from "./ProductForm";
 import About from "./About";
+import Home from "./Home";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -16,6 +17,7 @@ function App() {
   const onSign = (user) => setUser(user);
   const [ category, setCategory ] = useState('all')
   const [ filteredItems, setFilteredItems ] = useState([])
+  const [orderItems, setOrderItems] = useState([]);
 
   useEffect(() => {
     fetch("/products")
@@ -82,16 +84,19 @@ function App() {
           <SignUp  onSign={onSign}/>
         </Route>
         <Route exact path="/products">
-          <ProductPage products={products} filteredItems={filteredItems} handleFilter={handleFilter} user={user} deleteItem={deleteItem}/>
+          <ProductPage products={products} filteredItems={filteredItems} handleFilter={handleFilter} user={user} deleteItem={deleteItem} orderItems={orderItems}/>
         </Route>
-        <Route>
-          <Cart exact path='/cart' product={products}/>
+        <Route exact path='/cart'>
+          <Cart  product={products} orderItems={orderItems} setOrderItems={setFilteredItems}/>
         </Route>
-        <Route>
-          <ProductForm path="/products/new"/>
-        </Route>
-        <Route>
+        <Route path="/products/new">
+          <ProductForm />
+        </Route >
+        <Route exact path='/about'>
           <About />
+        </Route>
+        <Route exact path='/home'>
+          <Home />
         </Route>
       </Switch>
       <Footer />

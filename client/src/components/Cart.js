@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import { Card, Button, Icon, Container, Modal, Grid, Image, Segment, Header } from 'semantic-ui-react';
 
-const Cart = ({product}) => {
-  const [orderItems, setOrderItems] = useState([]);
+const Cart = ({orderItems, setOrderItems}) => {
+
   const [deleteItem, setDeleteItem] = useState(null);
   const [total, setTotal] = useState(0);
 
@@ -89,7 +89,7 @@ const Cart = ({product}) => {
             <Image src={product.image} 
             style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
             />
-            <Card.Content header={product.name} meta={product.price} />
+            <Card.Content header={product.name}/>
             <Card.Content>
               <Button.Group>
                 <Button onClick={() => handleMinus(product)}><Icon name='minus' /></Button>
