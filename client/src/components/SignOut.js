@@ -11,7 +11,6 @@ function SignOut({ onSign }){
         }).then((r) => {
             if(r.ok){
                 onSign(null)
-                alert('Sign out successful, returning to home....')
                 history.push('/home')
             } else {
                 alert('Something went wrong. Please try again')

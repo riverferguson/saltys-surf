@@ -16,7 +16,6 @@ const [reviewList, setReviewList] = useState([]);
 const Review = ({reviewBody}) => {
   return (
     <>
-      <h1>New Review</h1>
       <p>{reviewBody}</p>
     </>
   )
@@ -27,8 +26,6 @@ const ReviewList = () => {
     return <Review reviewBody={reviewBody.body} />
   })
 }
-
-console.log(reviewList.length)
 
 const addToCart = (e) => {
 
@@ -138,6 +135,7 @@ const handleReviewChange = (event) => {
       cols={50}
     />
   <Button type="submit">Submit Review</Button>
+  <h3>Reviews</h3>
   </form>
   
 </CardActions>
