@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 const ProductCard = ({product, user, addReviewToProduct}) => {
 const { name, image, condition, description, price, reviews} = product
 const [reviewText, setReviewText] = useState("")
+const [review, setReview] = useState(product.reviews)
 
 const Review = ({reviewBody}) => {
   return (
@@ -73,6 +74,7 @@ const submitReview = (e) => {
       if (res.ok) {
         res.json().then((data) => {
           addReviewToProduct(product.id, data)
+          setReview([...review, data])
           setReviewText("")
           console.log('Review successfully added.');
         });
@@ -136,8 +138,8 @@ const handleReviewChange = (event) => {
 : null }
   
 </CardActions>
-  { reviews.map((review) => (
-    <Review key={review.id} reviewBody={review.body} />
+  { review.map((r) => (
+    <Review key={r.id} reviewBody={r.body} />
   ))}
     </Card>
     </Container>

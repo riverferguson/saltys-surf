@@ -197,13 +197,10 @@ class Reviews(Resource):
     
         
     def post(self):
-        #ipdb.set_trace()
         try:
-            #query_result = db.session.query(Cartitem, Product).select_from(Cartitem).join(Product, Product.id == Cartitem.product_id).all()
             data = request.get_json()
             review = Review(**data)
             db.session.add(review)
-            
             db.session.commit()
             return make_response(review.to_dict(), 201)
         except Exception as e:

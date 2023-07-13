@@ -55,7 +55,7 @@ const filteredProducts = (value) => {
 
         <Grid.Column stretched width={12}>
           <Grid columns={2} stackable>
-            { filteredItems.map(product => (
+            { filterItems.map(product => (
               <Grid.Column key={product.id} computer={8} tablet={16} mobile={16}>
                 <ProductCard key={product.id} product={product} user={user} addReviewToProduct={addReviewToProduct}/>
               </Grid.Column>
