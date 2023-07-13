@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 const ProductCard = ({product, user}) => {
-const { name, image, category, condition, description, price} = product
+const { name, image, condition, description, price} = product
 const [reviewText, setReviewText] = useState("")
 const [reviewList, setReviewList] = useState([]);
 
@@ -28,10 +28,7 @@ const ReviewList = () => {
 }
 
 const addToCart = (e) => {
-
   e.target.innerText = "Item added";
-
-
     fetch('/cartitems', {
         method: 'POST',
         headers: {
@@ -56,13 +53,10 @@ const addToCart = (e) => {
 }
 
 const submitReview = (e) => {
-  
   e.preventDefault();
-
   if (reviewText.trim() === '') {
     return;
   }
-
   console.log(`user_id: ${user.id}`)
   console.log(`cart_item_id: ${Object.keys(product)}`)
 
