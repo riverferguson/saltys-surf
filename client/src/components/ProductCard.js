@@ -123,9 +123,13 @@ const handleReviewChange = (event) => {
       <CardActions>
       <Button size="small">
       </Button>
+      { user ?
       <Button sixe="small" onClick={addToCart}> Add To Cart </Button>
+        : null }
       </CardActions>
       <CardActions>
+
+        { user? 
   <form onSubmit={submitReview}>
     <textarea
       value={reviewText}
@@ -137,6 +141,7 @@ const handleReviewChange = (event) => {
   <Button type="submit">Submit Review</Button>
   <h3>Reviews</h3>
   </form>
+: null }
   
 </CardActions>
   { reviewList.map((review) => (

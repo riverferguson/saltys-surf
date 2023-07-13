@@ -8,17 +8,6 @@ const Nav = ({ user }) => {
         <span className="shop-name">&nbsp; Salty's Surfshop</span>
       </Link>
       <ul>
-        <li className="nav-link-wrapper">
-          <Link to="/products"> Products </Link>
-        </li>
-
-        <li className="nav-link-wrapper">
-          <Link to="/products/new">Sell</Link>
-        </li>
-
-        <li className="nav-link-wrapper">
-          <Link to="/cartitems"> Cart </Link>
-        </li>
 
         <li className="nav-link-wrapper">
           <Link to="/home"> Home </Link>
@@ -28,6 +17,16 @@ const Nav = ({ user }) => {
           <Link to="/about"> About </Link>
         </li>
 
+        <li className="nav-link-wrapper">
+          <Link to="/products"> Products </Link>
+        </li>
+        {user ?
+        <>
+        <li className="nav-link-wrapper">
+          <Link to="/cartitems"> Cart </Link>
+        </li>
+        </>
+        : null}
         <li className="nav-link-wrapper">
           <Link to={user ? "/signout" : "/signin"}>
             {user ? "SignOut" : "SignIn"}
