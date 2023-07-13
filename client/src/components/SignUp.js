@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useFormik } from 'formik'; // Import the useFormik hook
-import * as Yup from 'yup'; // Import Yup for validation
+import { useFormik } from 'formik'; 
+import * as Yup from 'yup'; 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -55,7 +55,7 @@ function SignUp({ onSign }) {
         .then((r) => {
           if (r.ok) {
             r.json().then(onSign);
-            history.push('/products');
+            history.push('/signin');
           } else {
             alert('Something went wrong. Please try again');
           }

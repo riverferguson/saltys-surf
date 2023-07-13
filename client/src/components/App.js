@@ -14,24 +14,21 @@ import Home from "./Home";
 function App() {
   const [products, setProducts] = useState([]);
   const [user, setUser] = useState(null);
-  const onSign = (user) => setUser(user);
   const [ category, setCategory ] = useState('all')
   const [ filteredItems, setFilteredItems ] = useState([])
 
+  const onSign = (user) => setUser(user);
 
   useEffect(() => {
     fetch("/products")
     .then(res => res.json())
     .then(data => {
       setProducts(data)
-      console.log('here')
-      console.log(products)
       setFilteredItems(data)
     });
   }, [])
 
   useEffect(() => {
-    console.log('being called here')
     const filtered = products.filter(product => {
       if (category === 'all') {
         return true;
@@ -40,7 +37,6 @@ function App() {
       }
     });
     setFilteredItems(filtered);
-    console.log(filteredItems)
   }, [products, category]);
 
   useEffect(() => {
@@ -54,16 +50,22 @@ function App() {
     });
   }, []);
 
+  const addReviewToProduct = (productId, review) => {
+    setFilteredItems((products) => products.map(product => {
+      if(product.id === productId){
+        return {...product, reviews: [...product.reviews, review]}
+      }
+      return product
+     } ))
+  
+  }
+
   const deleteItem = (id) => {
     console.log(id)
     const updatedItems = products.filter(product => product.id !== id)
     setProducts(updatedItems)
   }
 
-  const onAddItem = (newProduct) => {
-    const updatedItems = [...products, newProduct]
-    setProducts(updatedItems)
-  }
 
   const handleFilter = (value) => {
     setCategory(value)
@@ -84,7 +86,7 @@ function App() {
           <SignUp  onSign={onSign}/>
         </Route>
         <Route exact path="/products">
-          <ProductPage products={products} filteredItems={filteredItems} handleFilter={handleFilter} user={user} deleteItem={deleteItem}/>
+          <ProductPage products={products} filteredItems={filteredItems} handleFilter={handleFilter} user={user} deleteItem={deleteItem} addReviewToProduct={addReviewToProduct}/>
         </Route>
         <Route exact path='/cartitems'>
           <Cart  product={products}  setOrderItems={setFilteredItems}/>

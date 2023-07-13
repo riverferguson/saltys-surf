@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -8,10 +7,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-const ProductCard = ({product, user}) => {
-const { name, image, condition, description, price} = product
+const ProductCard = ({product, user, addReviewToProduct}) => {
+const { name, image, condition, description, price, reviews} = product
 const [reviewText, setReviewText] = useState("")
-const [reviewList, setReviewList] = useState([]);
 
 const Review = ({reviewBody}) => {
   return (
@@ -21,11 +19,11 @@ const Review = ({reviewBody}) => {
   )
 }
 
-const ReviewList = () => {
-  reviewList.map((reviewBody) => {
-    return <Review reviewBody={reviewBody.body} />
-  })
-}
+// const ReviewList = () => {
+//   reviewList.map((reviewBody) => {
+//     return <Review reviewBody={reviewBody.body} />
+//   })
+// }
 
 const addToCart = (e) => {
   e.target.innerText = "Item added";
@@ -68,13 +66,13 @@ const submitReview = (e) => {
     body: JSON.stringify({ 
       user_id: user.id, 
       body: reviewText, 
-      cart_item_id: product.cartitem_id 
+      product_id: product.id 
     }),
   })
     .then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          setReviewList(prevList => [...prevList, data])
+          addReviewToProduct(product.id, data)
           setReviewText("")
           console.log('Review successfully added.');
         });
@@ -133,13 +131,13 @@ const handleReviewChange = (event) => {
       cols={50}
     />
   <Button type="submit">Submit Review</Button>
-  <h3>Reviews</h3>
+  <h3>Customer Reviews</h3>
   </form>
 : null }
   
 </CardActions>
-  { reviewList.map((review) => (
-    <Review reviewBody={review.body} />
+  { reviews.map((review) => (
+    <Review key={review.id} reviewBody={review.body} />
   ))}
     </Card>
     </Container>

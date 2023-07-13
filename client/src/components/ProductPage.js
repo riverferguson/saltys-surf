@@ -1,22 +1,22 @@
 import React, {useState} from 'react'
 import ProductCard from './ProductCard'
-import { Link } from 'react-router-dom';
 import { Grid, Menu, Button } from 'semantic-ui-react'
-import { createMuiTheme } from '@mui/material';
 
-const ProductPage = ({products, handleFilter, orderItems, user}) => {
-const [filterItems, setFilterItems] = useState(products)
+
+const ProductPage = ({products, handleFilter, user, addReviewToProduct, filteredItems}) => {
+const [filterItems, setFilterItems] = useState(filteredItems)
+
 
 
 
 
 const filteredProducts = (value) => {
-  console.log('here', value, products)
+  console.log('here', value)
   if (value === 'all') {
-    setFilterItems(products)
+    setFilterItems(filteredItems)
     return
   }
-  let items = products.filter(product => {
+  let items = filteredItems.filter(product => {
     return product.category === value
   })
   console.log(items)
@@ -27,8 +27,6 @@ const filteredProducts = (value) => {
 
   return (
     <div className='product-page'>
-      {console.log("new debugger")}
-      {console.log(products)}
     <Grid>
         <Grid.Column width={3}>
           <Menu fluid vertical tabular>
@@ -57,9 +55,9 @@ const filteredProducts = (value) => {
 
         <Grid.Column stretched width={12}>
           <Grid columns={2} stackable>
-            { filterItems.map(product => (
+            { filteredItems.map(product => (
               <Grid.Column key={product.id} computer={8} tablet={16} mobile={16}>
-                <ProductCard key={product.id} product={product} user={user}/>
+                <ProductCard key={product.id} product={product} user={user} addReviewToProduct={addReviewToProduct}/>
               </Grid.Column>
             )) }
           </Grid>

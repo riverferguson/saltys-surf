@@ -77,8 +77,6 @@ const Cart = ({product}) => {
 
   return (
     <Container className='cart'>
-      {console.log('here3')}
-      {console.log(orderItems)}
     <h2>Cart</h2>
     <Grid centered>
       <Grid.Column width={6}>
