@@ -1,8 +1,8 @@
 """create models
 
-Revision ID: 09754ac6d9c1
+Revision ID: dacb0b9a0616
 Revises: 
-Create Date: 2023-07-11 20:39:27.761805
+Create Date: 2023-07-12 22:36:18.334687
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '09754ac6d9c1'
+revision = 'dacb0b9a0616'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -55,10 +55,10 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('body', sa.String(), nullable=True),
-    sa.Column('cart_item_id', sa.Integer(), nullable=True),
+    sa.Column('product_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['cart_item_id'], ['cartitems.id'], name=op.f('fk_reviews_cart_item_id_cartitems')),
+    sa.ForeignKeyConstraint(['product_id'], ['products.id'], name=op.f('fk_reviews_product_id_products')),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_reviews_user_id_users')),
     sa.PrimaryKeyConstraint('id')
     )

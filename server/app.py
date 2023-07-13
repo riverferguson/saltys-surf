@@ -35,7 +35,7 @@ class SignUp(Resource):
         username = request.get_json()['username']
         password = request.get_json()['password']
     
-        if owner := User.query.filter_by(username= username).first():
+        if user := User.query.filter_by(username= username).first():
             return make_response('That user already exists. Try logging in')
     
         new_user = User(email=email, username=username, password=generate_password_hash(password, method='scrypt'))

@@ -82,11 +82,11 @@ if __name__ == '__main__':
 
 
 
-        r1 = Review(user_id=1, body='great product', cart_item_id=1)
-        r2 = Review(user_id=2, body='great product', cart_item_id=4)
-        r3 = Review(user_id=3, body='great product', cart_item_id=3)
-        r4 = Review(user_id=2, body='great product', cart_item_id=5)
-        r5 = Review(user_id=1, body='great product', cart_item_id=2)
+        r1 = Review(user_id=1, body='great product', product_id=1)
+        r2 = Review(user_id=2, body='great product', product_id=4)
+        r3 = Review(user_id=3, body='great product', product_id=3)
+        r4 = Review(user_id=2, body='great product', product_id=5)
+        r5 = Review(user_id=1, body='great product', product_id=2)
 
         reviews = [r1, r2, r3, r4, r5]
         db.session.add_all(reviews)

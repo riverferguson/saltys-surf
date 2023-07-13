@@ -53,9 +53,9 @@ class Product(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
     
-    #cart_items = db.relationship('Cartitem', backref='product', cascade='all')
+    reviews = db.relationship('Review', backref='product', cascade='all')
     
-    #serlize_only = (id, name, image, category, condition, description, price, user_id, created_at, updated_at)
+    serlize_only = (id, name, image, category, condition, description, price, reviews)
     
     @validates('name')
     def validate_name(self, key, name):
@@ -87,14 +87,14 @@ class Review(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     body = db.Column(db.String)
-    cart_item_id = db.Column(db.Integer, db.ForeignKey('cartitems.id'))
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'))
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
     
-    cart_items = db.relationship('Cartitem', backref='review')
-    products = association_proxy('cart_items', 'product')
+    #product = db.relationship('Product', backref='review')
+    #products = association_proxy('cart_items', 'product')
     
-    serialize_only = ('id', 'user_id', 'body', 'cart_item_id')
+    serialize_only = ('id', 'user_id', 'body', 'product_id')
     
     def __repr__(self):
         return f'<Review {self.id}'
