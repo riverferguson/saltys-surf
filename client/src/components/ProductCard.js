@@ -107,17 +107,17 @@ const handleReviewChange = (event) => {
         <Typography gutterBottom variant="h5" component="div">
            {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-        Description: {description}
+        <Typography variant="body3" color="text.secondary">
+        <strong>Description:</strong> {description}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-        Condition: {condition}
+        <Typography variant="h6" color="text.secondary">
+        <strong>Condtion:</strong> {condition}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        {/* <Typography variant="body2" color="text.secondary">
          Category: {category}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-        Price: ${price}.00
+        </Typography> */}
+        <Typography variant="h5" color="text.secondary">
+        <strong>Price:</strong> ${price}.00
         </Typography>
       </CardContent>
       <CardActions>
