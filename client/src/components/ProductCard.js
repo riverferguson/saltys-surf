@@ -96,11 +96,11 @@ const handleReviewChange = (event) => {
 
   return (
     <Container maxWidth="sm">
-    <Card sx={{ maxWidth: 345, margin: '80px'}}>
+    <Card sx={{ maxWidth: 545, margin: '40px'}}>
       <CardMedia
         component="img"
         alt={name}
-        height="240"
+        height="340"
         src={image}
       />
       <CardContent>

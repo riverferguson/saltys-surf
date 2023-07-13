@@ -30,7 +30,7 @@ const filteredProducts = (value) => {
       {console.log("new debugger")}
       {console.log(products)}
     <Grid>
-        <Grid.Column width={4}>
+        <Grid.Column width={3}>
           <Menu fluid vertical tabular>
             <Menu.Item
               name='All'
