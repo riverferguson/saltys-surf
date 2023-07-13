@@ -23,11 +23,8 @@ function SignIn({ onSign }) {
 
   const validationSchema = Yup.object().shape({
     username: Yup.string()
-      .min(5, 'Username must be at least 5 characters')
-      .max(15, 'Username must be no longer than 15 characters')
       .required('Username is required'),
     password: Yup.string()
-      
       .required('Password is required'),
   });
 

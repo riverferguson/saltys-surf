@@ -21,8 +21,14 @@ function SignUp({ onSign }) {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
-    username: Yup.string().required('Username is required'),
-    password: Yup.string().required('Password is required'),
+    username: Yup.string()
+      .min(5, 'Username must be at least 5 characters')
+      .max(15, 'Username must be no longer than 15 characters')
+      .required('Username is required'),
+    password: Yup.string()
+      .min(8, 'Password must be at least 8 characters')
+      .matches(/[\d\w]/, 'Password can only contain letters and numbers.')
+      .required('Password is required'),
   });
 
   const formik = useFormik({
