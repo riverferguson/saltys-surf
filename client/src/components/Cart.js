@@ -35,7 +35,8 @@ const Cart = ({product}) => {
   };
 
   const handleMinus = (product) => {
-    if (product.quantity >= 0) {
+    console.log(product.quantity >= 0)
+    if (product.quantity >= 1) {
       fetch(`/cartitems/${product.id}`, {
         method: 'PATCH',
         headers: {

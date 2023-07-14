@@ -5,7 +5,6 @@ import ProductPage from "./ProductPage";
 import Footer from "./Footer";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import SignOut from "./SignOut";
 import Cart from "./Cart";
 import ProductForm from "./ProductForm";
 import About from "./About";
@@ -15,7 +14,7 @@ import { ErrorProvider } from "../context/errorContext";
 function App() {
   const [products, setProducts] = useState([]);
   const [user, setUser] = useState(null);
-  const [ category, setCategory ] = useState('all')
+ 
   const [ filteredItems, setFilteredItems ] = useState([])
 
   const onSign = (user) => setUser(user);
@@ -29,16 +28,7 @@ function App() {
     });
   }, [])
 
-  useEffect(() => {
-    const filtered = products.filter(product => {
-      if (category === 'all') {
-        return true;
-      } else {
-        return product.category === category;
-      }
-    });
-    setFilteredItems(filtered);
-  }, [products, category]);
+
 
   useEffect(() => {
     fetch("/check_session").then((r) => {
@@ -67,27 +57,24 @@ function App() {
   }
 
 
-  const handleFilter = (value) => {
-    setCategory(value)
-    console.log(value)
-  }
+  // const handleFilter = (value) => {
+  //   setCategory(value)
+  //   console.log(value)
+  // }
 
   return (
     <ErrorProvider>
     <main className="app">
-      <Nav user={user} />
+      <Nav user={user} onSign={onSign} />
       <Switch>
         <Route exact path="/signin">
           <SignIn  onSign={onSign}/>
-        </Route>
-        <Route path="/signout">
-          <SignOut onSign={onSign} />
         </Route>
         <Route exact path="/signup">
           <SignUp  onSign={onSign}/>
         </Route>
         <Route exact path="/products">
-          <ProductPage products={products} filteredItems={filteredItems} handleFilter={handleFilter} user={user} deleteItem={deleteItem} addReviewToProduct={addReviewToProduct}/>
+          <ProductPage products={products} filteredItems={filteredItems} user={user} deleteItem={deleteItem} addReviewToProduct={addReviewToProduct}/>
         </Route>
         <Route exact path='/cartitems'>
           <Cart  product={products}  setOrderItems={setFilteredItems}/>
@@ -98,7 +85,7 @@ function App() {
         <Route exact path='/about'>
           <About />
         </Route>
-        <Route exact path='/home'>
+        <Route exact path='/'>
           <Home />
         </Route>
       </Switch>

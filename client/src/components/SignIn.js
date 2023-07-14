@@ -47,9 +47,9 @@ function SignIn({ onSign }) {
         .then((r) => {
           if (r.ok) {
             r.json().then((data) => onSign(data));
-            history.push('/home');
+            history.push('/');
           } else {
-            setError('Invalid Credentials');
+            setError('Oops, something went wrong. Provide Valid Username and Password');
           }
         });
     },

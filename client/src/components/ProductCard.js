@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 const ProductCard = ({product, user, addReviewToProduct}) => {
-const { name, image, condition, description, price, reviews} = product
+const { name, image, condition, description, price} = product
 const [reviewText, setReviewText] = useState("")
 const [review, setReview] = useState(product.reviews)
 
@@ -20,11 +20,6 @@ const Review = ({reviewBody}) => {
   )
 }
 
-// const ReviewList = () => {
-//   reviewList.map((reviewBody) => {
-//     return <Review reviewBody={reviewBody.body} />
-//   })
-// }
 
 const addToCart = (e) => {
   e.target.innerText = "Item added";

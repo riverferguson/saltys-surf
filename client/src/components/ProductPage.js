@@ -1,25 +1,35 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import ProductCard from './ProductCard'
 import { Grid, Menu, Button } from 'semantic-ui-react'
 
 
-const ProductPage = ({products, handleFilter, user, addReviewToProduct, filteredItems}) => {
-const [filterItems, setFilterItems] = useState(filteredItems)
+const ProductPage = ({products, handleFilter, user, addReviewToProduct}) => {
+const [ category, setCategory ] = useState('all')  
+const [filteredItems, setFilteredItems] = useState(products)
+
+useEffect(() => {
+  const filtered = products.filter(product => {
+    if (category === 'all') {
+      return true;
+    } else {
+      return product.category === category;
+    }
+  });
+  setFilteredItems(filtered);
+}, [products, category]);
 
 
 
-
-
-const filteredProducts = (value) => {
-  if (value === 'all') {
-    setFilterItems(filteredItems)
-    return
-  }
-  let items = filteredItems.filter(product => {
-    return product.category === value
-  })
-  setFilterItems(items)
-}
+// const filteredProducts = (value) => {
+//   if (value === 'all') {
+//     setFilterItems(filteredItems)
+//     return
+//   }
+//   let items = filteredItems.filter(product => {
+//     return product.category === value
+//   })
+//   setFilterItems(items)
+// }
 
 
 
@@ -31,29 +41,29 @@ const filteredProducts = (value) => {
             <Menu.Item
               name='All'
               value='all'
-              onClick={(e) => filteredProducts(e.target.getAttribute('value'))}
+              onClick={(e) => setCategory(e.target.getAttribute('value'))}
             />
             <Menu.Item
               name='Surfboards'
               value='surfboard'
-              onClick={(e) => filteredProducts(e.target.getAttribute('value'))}
+              onClick={(e) => setCategory(e.target.getAttribute('value'))}
             />
             <Menu.Item
               name='Fins'
               value='fins'
-              onClick={(e) => filteredProducts(e.target.getAttribute('value'))}
+              onClick={(e) => setCategory(e.target.getAttribute('value'))}
             />
             <Menu.Item
               name='Leashes'
               value='leash'
-              onClick={(e) => filteredProducts(e.target.getAttribute('value'))}
+              onClick={(e) => setCategory(e.target.getAttribute('value'))}
             />
           </Menu>
         </Grid.Column>
 
         <Grid.Column stretched width={12}>
           <Grid columns={2} stackable>
-            { filterItems.map(product => (
+            { filteredItems.map(product => (
               <Grid.Column key={product.id} computer={8} tablet={16} mobile={16}>
                 <ProductCard key={product.id} product={product} user={user} addReviewToProduct={addReviewToProduct}/>
               </Grid.Column>
