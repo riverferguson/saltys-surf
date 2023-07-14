@@ -3,6 +3,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 
 
@@ -24,7 +26,12 @@ const Footer = () => {
             </a>
             <p>Salty's Surfshop &#8482;</p> 
             <a href='#root'>
+            <Button variant="contained" size="medium">
+          Back To Top
+        </Button>
             </a>
+       
+
           </div>
         </>
   )
