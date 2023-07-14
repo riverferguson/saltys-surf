@@ -13,6 +13,7 @@ export const ErrorProvider = ({children}) => {
         }}>
             {children}
             {error}
+
         </ErrorContext.Provider>
     )
 }
@@ -21,4 +22,3 @@ export function useErrors() {
     return useContext(ErrorContext);
 }
 
-// export default ErrorProvider
