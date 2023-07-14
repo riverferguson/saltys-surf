@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import { useHistory } from 'react-router-dom'
 import { Card, Button, Icon, Container, Modal, Grid, Image, Segment, Header } from 'semantic-ui-react';
 
 const Cart = ({product}) => {

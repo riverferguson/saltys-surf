@@ -14,7 +14,6 @@ import { ErrorProvider } from "../context/errorContext";
 function App() {
   const [products, setProducts] = useState([]);
   const [user, setUser] = useState(null);
- 
   const [ filteredItems, setFilteredItems ] = useState([])
 
   const onSign = (user) => setUser(user);
@@ -40,6 +39,7 @@ function App() {
     });
   }, []);
 
+
   const addReviewToProduct = (productId, review) => {
     setFilteredItems((products) => products.map(product => {
       if(product.id === productId){
@@ -57,10 +57,6 @@ function App() {
   }
 
 
-  // const handleFilter = (value) => {
-  //   setCategory(value)
-  //   console.log(value)
-  // }
 
   return (
     <ErrorProvider>
