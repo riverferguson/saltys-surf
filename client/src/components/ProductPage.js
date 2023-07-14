@@ -11,7 +11,6 @@ const [filterItems, setFilterItems] = useState(filteredItems)
 
 
 const filteredProducts = (value) => {
-  console.log('here', value)
   if (value === 'all') {
     setFilterItems(filteredItems)
     return
@@ -19,7 +18,6 @@ const filteredProducts = (value) => {
   let items = filteredItems.filter(product => {
     return product.category === value
   })
-  console.log(items)
   setFilterItems(items)
 }
 

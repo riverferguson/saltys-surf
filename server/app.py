@@ -134,7 +134,14 @@ api.add_resource(ProductsByID, '/products/<int:id>')
 class Cartitems(Resource):
     def get(self):
         result = []
-        query_result = db.session.query(Cartitem, Product).select_from(Cartitem).join(Product, Product.id == Cartitem.product_id).all()
+        user_id = session.get('user_id')  # Retrieve the logged-in user's ID
+        query_result = (
+            db.session.query(Cartitem, Product)
+            .select_from(Cartitem)
+            .join(Product, Product.id == Cartitem.product_id)
+            .filter(Cartitem.user_id == user_id)  # Filter cart items by user ID
+            .all()
+        )
         for query in query_result:
             (cartitem, product) = query
             joined_product = {
@@ -153,7 +160,8 @@ class Cartitems(Resource):
     def post(self):
         try:
             data = request.get_json()
-            cart_item = Cartitem(**data)
+            user_id = session.get('user_id')  # Retrieve the logged-in user's ID
+            cart_item = Cartitem(user_id=user_id, **data)  # Set the user_id of the cart item
             db.session.add(cart_item)
             db.session.commit()
             return make_response(cart_item.to_dict(), 201)
