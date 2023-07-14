@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Card, Button, Icon, Container, Modal, Grid, Image, Segment, Header } from 'semantic-ui-react';
 
-const Cart = ({product}) => {
+const Cart = () => {
 
   const [deleteItem, setDeleteItem] = useState(null);
   const [total, setTotal] = useState(0);

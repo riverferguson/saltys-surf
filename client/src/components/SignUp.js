@@ -31,6 +31,9 @@ function SignUp({ onSign }) {
       .min(8, 'Password must be at least 8 characters')
       .matches(/[\d\w]/, 'Password can only contain letters and numbers.')
       .required('Password is required'),
+      confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password")], "Passwords do not match")
+      .required("Password Confirm is required"),
   });
 
   const formik = useFormik({
@@ -38,6 +41,7 @@ function SignUp({ onSign }) {
       email: '',
       username: '',
       password: '',
+      confirmPassword: '',
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -45,6 +49,7 @@ function SignUp({ onSign }) {
         email: values.email,
         username: values.username,
         password: values.password,
+        confirm_password: values.confirmPassword,
       };
 
       fetch('/signup', {
@@ -130,6 +135,22 @@ function SignUp({ onSign }) {
                   onBlur={formik.handleBlur}
                   error={formik.touched.password && formik.errors.password}
                   helperText={formik.touched.password && formik.errors.password}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  id="confirmPassword"
+                  autoComplete="new-confirm-Password"
+                  type="password"
+                  value={formik.values.confirmPassword}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.confirmPassword && formik.errors.confirmPassword}
+                  helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
                 />
               </Grid>
               <Grid item xs={12}></Grid>

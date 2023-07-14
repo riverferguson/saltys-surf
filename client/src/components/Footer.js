@@ -3,7 +3,6 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
 const Footer = () => {

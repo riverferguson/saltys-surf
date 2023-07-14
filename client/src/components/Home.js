@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Header, Grid, Image, Card, SegmentInline, Segment } from 'semantic-ui-react';
+import { Header, Grid, Image, Segment } from 'semantic-ui-react';
 
 
 export default function Home() {

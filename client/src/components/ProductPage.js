@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import ProductCard from './ProductCard'
-import { Grid, Menu, Button } from 'semantic-ui-react'
+import { Grid, Menu } from 'semantic-ui-react'
 
 
-const ProductPage = ({products, handleFilter, user, addReviewToProduct}) => {
+const ProductPage = ({products, user, addReviewToProduct}) => {
 const [ category, setCategory ] = useState('all')  
 const [filteredItems, setFilteredItems] = useState(products)
 
@@ -17,20 +17,6 @@ useEffect(() => {
   });
   setFilteredItems(filtered);
 }, [products, category]);
-
-
-
-// const filteredProducts = (value) => {
-//   if (value === 'all') {
-//     setFilterItems(filteredItems)
-//     return
-//   }
-//   let items = filteredItems.filter(product => {
-//     return product.category === value
-//   })
-//   setFilterItems(items)
-// }
-
 
 
   return (
