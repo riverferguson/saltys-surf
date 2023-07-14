@@ -19,7 +19,7 @@ const {setError} = useErrors()
             setOpen(false)
             history.push('/')
         } else {
-            setError('Something went wrong. Please try again')
+            setError('Sign out went wrong. Please try again')
         }
     });
 }
