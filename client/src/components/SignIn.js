@@ -13,11 +13,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useHistory } from 'react-router-dom';
+import { useErrors } from '../context/errorContext';
 
 const defaultTheme = createTheme();
 
 function SignIn({ onSign }) {
   const history = useHistory();
+  const {setError} = useErrors()
 
   const validationSchema = Yup.object().shape({
     username: Yup.string()
@@ -47,7 +49,7 @@ function SignIn({ onSign }) {
             r.json().then((data) => onSign(data));
             history.push('/home');
           } else {
-            alert('Invalid Credentials');
+            setError('Invalid Credentials');
           }
         });
     },

@@ -13,10 +13,12 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useHistory } from 'react-router-dom';
+import { useErrors } from '../context/errorContext';
 
 const defaultTheme = createTheme();
 
 function SignUp({ onSign }) {
+  const {setError} = useErrors()
   const history = useHistory();
 
   const validationSchema = Yup.object().shape({
@@ -57,7 +59,8 @@ function SignUp({ onSign }) {
             r.json().then(onSign);
             history.push('/signin');
           } else {
-            alert('Something went wrong. Please try again');
+
+            setError('Something went wrong try again');
           }
         });
     },

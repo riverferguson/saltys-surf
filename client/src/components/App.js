@@ -10,6 +10,7 @@ import Cart from "./Cart";
 import ProductForm from "./ProductForm";
 import About from "./About";
 import Home from "./Home";
+import { ErrorProvider } from "../context/errorContext";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -72,6 +73,7 @@ function App() {
   }
 
   return (
+    <ErrorProvider>
     <main className="app">
       <Nav user={user} />
       <Switch>
@@ -102,6 +104,7 @@ function App() {
       </Switch>
       <Footer />
     </main>
+    </ErrorProvider>
   );
 }
 

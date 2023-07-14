@@ -2,14 +2,23 @@ import {useContext, useState, createContext} from 'react'
 
 const ErrorContext = createContext()
 
-const ErrorProvider = ({children}) => {
-    const [errors, setErrors] = useState("")
+export const ErrorProvider = ({children}) => {
+    const [error, setError] = useState("")
+
+
 
     return(
-        <ErrorContext.Provider>
+        <ErrorContext.Provider value={{
+            setError: setError
+        }}>
             {children}
+            {error}
         </ErrorContext.Provider>
     )
 }
 
-export default ErrorProvider
+export function useErrors() {
+    return useContext(ErrorContext);
+}
+
+// export default ErrorProvider
