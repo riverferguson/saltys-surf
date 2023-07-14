@@ -94,7 +94,7 @@ const handleReviewChange = (event) => {
       <CardMedia
         component="img"
         alt={name}
-        height="340"
+        height="440"
         src={image}
       />
       <CardContent>
@@ -107,9 +107,6 @@ const handleReviewChange = (event) => {
         <Typography variant="h6" color="text.secondary">
         <strong>Condtion:</strong> {condition}
         </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-         Category: {category}
-        </Typography> */}
         <Typography variant="h5" color="text.secondary">
         <strong>Price:</strong> ${price}.00
         </Typography>
