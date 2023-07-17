@@ -71,7 +71,6 @@ const submitReview = (e) => {
           addReviewToProduct(product.id, data)
           setReview([...review, data])
           setReviewText("")
-          console.log('Review successfully added.');
         });
       }
     })

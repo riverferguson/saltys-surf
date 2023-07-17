@@ -33,7 +33,7 @@ function SignUp({ onSign }) {
       .required('Password is required'),
       confirmPassword: Yup.string()
       .oneOf([Yup.ref("password")], "Passwords do not match")
-      .required("Password Confirm is required"),
+      .required("Password confirmation is required"),
   });
 
   const formik = useFormik({
