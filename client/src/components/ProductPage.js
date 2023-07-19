@@ -3,6 +3,7 @@ import ProductCard from './ProductCard'
 import { Grid, Menu } from 'semantic-ui-react'
 
 
+
 const ProductPage = ({products, user, addReviewToProduct}) => {
 const [ category, setCategory ] = useState('all')  
 const [filteredItems, setFilteredItems] = useState(products)
