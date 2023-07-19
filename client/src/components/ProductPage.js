@@ -23,7 +23,8 @@ useEffect(() => {
   return (
     <div className='product-page'>
     <Grid>
-        <Grid.Column width={3}>
+        <Grid.Column width={3} >
+          <div className='sticky-menu-container'>
           <Menu fluid vertical tabular>
             <Menu.Item
               name='All'
@@ -46,6 +47,7 @@ useEffect(() => {
               onClick={(e) => setCategory(e.target.getAttribute('value'))}
             />
           </Menu>
+          </div>
         </Grid.Column>
 
         <Grid.Column stretched width={12}>

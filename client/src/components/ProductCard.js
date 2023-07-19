@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
+
 const ProductCard = ({product, user, addReviewToProduct}) => {
 const { name, image, condition, description, price} = product
 const [reviewText, setReviewText] = useState("")
