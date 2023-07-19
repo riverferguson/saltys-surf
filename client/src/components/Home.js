@@ -1,6 +1,7 @@
 import { Header, Grid, Image, Segment } from 'semantic-ui-react';
 
 
+
 export default function Home() {
 
 
@@ -28,7 +29,9 @@ export default function Home() {
             </Segment>
           </Grid.Column>
           <Grid.Column>
-            <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9B0oeodlIGBlTdP6Nv81tZc_3FTpgIIsdDw&usqp=CAU" alt="wave picture" floated="right"/>
+            
+            <Image src="https://t4.ftcdn.net/jpg/02/19/15/89/240_F_219158969_kv2s7REq6A7arX6n9TX6tt6H9g7uujYU.jpg" alt="wave picture" size="large" floated="right"/>
+        
           </Grid.Column>
         </Grid.Row>
       </Grid>
