@@ -18,4 +18,12 @@ $pip install Flask-RESTful
 $pip install Flask
 $pip install werkzeug
 ```
+## Lastly you will need a secret key to get everything running properly:
+1. First make sure you have Flask-DotEnv installed and create a .env file in the server folder.
+2. add the file to your .gitignore in the server folder
+> _NOTE:_  This will prevent github from tracking the .env file which will contain your secret_key
+3. Lastly create a secret key and add it to the .env file syntax should be SECRET_KEY=your_secret_key you can generate a good secret key through the following command
+```console
+$ python -c 'import os; print(os.urandom(16))'
+```
 
