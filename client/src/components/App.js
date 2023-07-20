@@ -61,7 +61,7 @@ function App() {
   return (
     <ErrorProvider>
     <main className="app">
-      <Nav user={user} onSign={onSign} />
+      <Nav user={user} onSign={onSign}  />
       <Switch>
         <Route exact path="/signin">
           <SignIn  onSign={onSign}/>
@@ -82,7 +82,7 @@ function App() {
           <About />
         </Route>
         <Route exact path='/'>
-          <Home />
+          <Home products={products}/>
         </Route>
       </Switch>
       <Footer />
