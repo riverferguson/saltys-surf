@@ -12,14 +12,34 @@ const ProductCard = ({product, user, addReviewToProduct}) => {
 const { name, image, condition, description, price} = product
 const [reviewText, setReviewText] = useState("")
 const [review, setReview] = useState(product.reviews)
+const [error, setError] = useState(null)
 
-const Review = ({reviewBody}) => {
+const deleteReview = (deletedReview) =>
+  setReview((reviews) => reviews.filter((review) => review.id !== deletedReview.id));
+
+
+const handleReviewDelete = (reviewId) => {
+  fetch(`/reviews/${reviewId.id}`, {
+    method: 'DELETE',
+  })
+  .then((res) => {
+    if (res.ok) {
+      deleteReview({ id: reviewId });
+    } else {
+      res.json().then((error) => setError(error.message));
+    }
+  })
+  .catch(console.error);
+};
+
+const Review = ({ reviewBody, reviewId, handleReviewDelete }) => {
   return (
     <>
       <p>{reviewBody}</p>
+      <Button onClick={() => handleReviewDelete({ id: reviewId })}>Delete</Button>
     </>
-  )
-}
+  );
+};
 
 
 const addToCart = (e) => {
@@ -52,9 +72,6 @@ const submitReview = (e) => {
   if (reviewText.trim() === '') {
     return;
   }
-  console.log(`user_id: ${user.id}`)
-  console.log(`cart_item_id: ${Object.keys(product)}`)
-
   fetch('/reviews', {
     method: 'POST',
     headers: {
@@ -85,58 +102,58 @@ const handleReviewChange = (event) => {
 
   return (
     <Container maxWidth="sm">
-    <Card sx={{ maxWidth: 545, margin: '40px'}}>
-      <CardMedia
-        component="img"
-        alt={name}
-        height="440"
-        src={image}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-           {name}
-        </Typography>
-        <Typography variant="body3" color="text.secondary">
-        <strong>Description:</strong> {description}
-        </Typography>
-        <Typography variant="h6" color="text.secondary">
-        <strong>Condtion:</strong> {condition}
-        </Typography>
-        <Typography variant="h5" color="text.secondary">
-        <strong>Price:</strong> ${price}.00
-        </Typography>
-      </CardContent>
-      <CardActions>
-      <Button size="small">
-      </Button>
-      { user ?
-      <Button sixe="small" onClick={addToCart}> Add To Cart </Button>
-        : null }
-      </CardActions>
-      <CardActions>
-
-        { user? 
-  <form onSubmit={submitReview}>
-    <textarea
-      value={reviewText}
-      onChange={handleReviewChange}
-      placeholder="Write a review..."
-      rows={4}
-      cols={50}
-    />
-  <Button type="submit">Submit Review</Button>
-  <h3>Customer Reviews</h3>
-  </form>
-: null }
-  
-</CardActions>
-  { review.map((r) => (
-    <Review key={r.id} reviewBody={r.body} />
-  ))}
-    </Card>
+      <Card sx={{ maxWidth: 545, margin: '40px' }}>
+        <CardMedia component="img" alt={name} height="440" src={image} />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {name}
+          </Typography>
+          <Typography variant="body3" color="text.secondary">
+            <strong>Description:</strong> {description}
+          </Typography>
+          <Typography variant="h6" color="text.secondary">
+            <strong>Condition:</strong> {condition}
+          </Typography>
+          <Typography variant="h5" color="text.secondary">
+            <strong>Price:</strong> ${price}.00
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small"></Button>
+          {user ? (
+            <Button sixe="small" onClick={addToCart}>
+              Add To Cart
+            </Button>
+          ) : null}
+        </CardActions>
+        <CardActions>
+          {user ? (
+            <form onSubmit={submitReview}>
+              <textarea
+                value={reviewText}
+                onChange={handleReviewChange}
+                placeholder="Write a review..."
+                rows={4}
+                cols={50}
+              />
+              <Button type="submit">Submit Review</Button>
+              <h3>Customer Reviews</h3>
+            </form>
+          ) : null}
+        </CardActions>
+        {user
+          ? review.map((r) => (
+              <Review
+                key={r.id}
+                reviewBody={r.body}
+                reviewId={r.id}
+                handleReviewDelete={handleReviewDelete}
+              />
+            ))
+          : null}
+      </Card>
     </Container>
   );
-}
+};
 
-
-export default ProductCard
+export default ProductCard;

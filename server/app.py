@@ -203,7 +203,9 @@ class Reviews(Resource):
         review = [r.to_dict() for r in Review.query.all()]
         return make_response(jsonify(review), 200)
     
+
         
+
     def post(self):
         try:
             data = request.get_json()
@@ -216,5 +218,18 @@ class Reviews(Resource):
         
 api.add_resource(Reviews, '/reviews')
 
+class ReviewById(Resource):
+
+    def delete(self, id):
+        try:
+            review = db.session.get(Review, id)
+            db.session.delete(review)
+            db.session.commit()
+            return make_response(jsonify({}), 204)
+        except Exception:
+            return make_response(jsonify({"errors": "Review not found"}), 404)
+        
+api.add_resource(ReviewById, '/reviews/<int:id>')
+        
 if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+    app.run(port=5551, debug=True)

@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { useFormik } from 'formik'; 
-import * as Yup from 'yup'; 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,7 +11,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useHistory } from 'react-router-dom';
+import { useFormik } from 'formik'; 
+import * as Yup from 'yup'; 
 import { useErrors } from '../context/errorContext';
+
+
 
 const defaultTheme = createTheme();
 
