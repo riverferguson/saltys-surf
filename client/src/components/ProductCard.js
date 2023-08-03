@@ -6,6 +6,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 
 
 const ProductCard = ({product, user, addReviewToProduct}) => {
@@ -14,23 +16,26 @@ const [reviewText, setReviewText] = useState("")
 const [review, setReview] = useState(product.reviews)
 const [error, setError] = useState(null)
 
-const deleteReview = (deletedReview) =>
-  setReview((reviews) => reviews.filter((review) => review.id !== deletedReview.id));
 
 
-const handleReviewDelete = (reviewId) => {
-  fetch(`/reviews/${reviewId.id}`, {
-    method: 'DELETE',
-  })
-  .then((res) => {
-    if (res.ok) {
-      deleteReview({ id: reviewId });
-    } else {
-      res.json().then((error) => setError(error.message));
-    }
-  })
-  .catch(console.error);
-};
+
+  const handleReviewDelete = (reviewId) => {
+    fetch(`/reviews/${reviewId.id}`, {
+      method: 'DELETE',
+    })
+      .then((res) => {
+        if (res.ok) {
+          setReview((reviews) =>
+            reviews.filter((review) => review.id !== reviewId.id)
+          );
+        } else {
+          res.json().then((error) => setError(error.message));
+        }
+      })
+      .catch((error) => {
+        console.error('Error deleting review:', error);
+      });
+  };
 
 const Review = ({ reviewBody, reviewId, handleReviewDelete }) => {
   return (
@@ -121,24 +126,25 @@ const handleReviewChange = (event) => {
         <CardActions>
           <Button size="small"></Button>
           {user ? (
-            <Button sixe="small" onClick={addToCart}>
+            <Button size="small" onClick={addToCart}>
               Add To Cart
             </Button>
           ) : null}
         </CardActions>
         <CardActions>
           {user ? (
-            <form onSubmit={submitReview}>
-              <textarea
-                value={reviewText}
-                onChange={handleReviewChange}
-                placeholder="Write a review..."
-                rows={4}
-                cols={50}
-              />
-              <Button type="submit">Submit Review</Button>
-              <h3>Customer Reviews</h3>
-            </form>
+            <Box
+            onSubmit={submitReview}
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField id="outlined-basic" label="Add Review Here" variant="outlined" value={reviewText} onChange={handleReviewChange}/>
+            <Button type='submit'>Submit Review</Button>
+          </Box>
           ) : null}
         </CardActions>
         {user
